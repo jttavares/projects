@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Frameworks</title>
+</head>
+<body>
+    <h1>O que são Frameworks?</h1>
+         
+        <br>
+        Frameworks são aplicações que nos ajudam a criar outras aplicações. <br>
+        Eles já vêm com várias funcionalidades prontas que resolvem as principais necessidades que surgem durante a criação de uma aplicação, como gerenciamento de rotas, criação de componentes, gerenciamento de dados, etc. <br>
+        A principal diferença com uma biblioteca é que os nossos códigos usam as bibliotecas. Podemos chamar as funcionalidades das bibliotecas de qualquer lugar como quisermos. <br>
+        Já os frameworks normalmente definem a estrutura e fluxo de uma aplicação, e é o framework que irá chamar as nossas funções. <br>
+        Os Frameworks JavaScript mais conhecidos são: Angular, Vue.js, Ember, etc. <br>
+        Aqui no TreinaWeb há cursos de todos eles.
+
+        Exemplos utilizando o Vue.
+        <br><br><br>
+        <div id="app">
+            <input type="text" v-model='name'>
+            <button v-on:click="insert()" >Insert</button>
+            <br>
+            {{name}}
+            <br>
+            <ul>
+                <li v-for="item in list">{{item.name}}</li>
+            </ul>
+        </div>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="sc3390_frameworks.js"></script>
+</body>
+</html>
