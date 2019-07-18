@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cases de Sucesso</title>
+</head>
+<body>
+        <h1>Casos de (muito) sucesso envolvendo o Node.js</h1><br>
+        O PayPal mudou seu código legado em Java para JavaScript utilizando o Node.js. Segundo foi postado em seu blog oficial, o tempo de desenvolvimento foi bem menor, com menos programadores e menos linhas de código para uma aplicação que fazia o mesmo que o código em Java. Eles afirmam que agora conseguem atender o dobro de requisições por segundo, o tempo médio de resposta para a mesma página diminuiu em 35%. Isso sem contar que a aplicação testada em Node.js estava utilizando apenas 1 núcleo, enquanto a aplicação Java utilizava 5. <br>
+        
+        O Linkedin mudou de Rails para Node. Segundo a equipe, a aplicação feita em Node roda até 20 vezes mais rápida em alguns cenários, equipes front-end e back-end foram combinadas em uma unidade e servidores diminuíram de 30 para 3. <br>
+        
+        O Netflix decidiu migrar toda a sua interface web do Java para o Node.js. Outras empresas também adotaram o Node.js, como o New York Times, Medium e Uber. <br>
+        
+        <h2>Diferenças entre Node.js e Javascript sendo executado no navegador </h2> 
+        
+        A diferença é que o Node.js estará rodando no servidor e, portanto, consumindo recursos do servidor somente. O JavaScript executado no navegador é processado no cliente, consumindo recursos da máquina do usuário da aplicação. Isso significa que temos algumas diferenças de ambientes. <br>
+        
+        O JavaScript do navegador tem funcionalidades de acesso ao DOM, APIs do HTML como canvas, camera, microfone, etc. O objeto global é o window, que também nos fornece informações sobre a janela aberta. Também temos eventos relativos ao touch, mouse e teclado. Como não temos controle da versão do navegador e sistema operacional utilizados pelo usuário, temos que tomar cuidado para que o código escrito funcione em diversos navegadores em diversos sistemas. <br>
+        
+        Nada citado acima faz sentido no servidor, como esperar o clique de um mouse e abrir uma janela. Também não precisamos ter cuidado com a compatibilidade em todos os ambientes do código, já que o que importa é a versão do Node.js rodando em nosso servidor, e não a versão do browser que o usuário está usando. <br>
+        
+        No Node.js temos no lugar da variável global window a variável global nomeada global. Também temos bibliotecas que nos ajudam a cuidar de leitura e escrita de arquivos, gerenciamento de conexões, acesso direto a funcionalidades do sistema operacional, etc. Isso tudo é permitido por estarmos no servidor, o que no navegador é restrito por medidas de segurança. <br>
+</body>
+</html>
