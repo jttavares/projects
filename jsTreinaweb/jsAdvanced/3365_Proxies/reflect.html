@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Reflect</title>
+</head>
+<body>
+    <p>
+        Reflect é um objeto que nos fornece funções iguais aos do Proxy, e foi introduzido no ES2015. <br>
+        Diferente do Proxy, nós não instanciamos um Reflect. Apenas chamamos o Reflect e seus métodos, <br> assim como fazemos com o Math. <br>
+        Vamos ver o seguinte exemplo: <br><br>
+        
+        
+        var myObj = {a: 5}; <br>
+        myObj['a']; // retorna 5 <br>
+        Reflect.get(myObj, 'a'); // retorna 5 <br> <br>
+        
+        
+        Tanto a linha 2 como a linha 3 fazem a mesma coisa. <br>
+        Quando chamamos o Reflect, executamos alguma função (no caso, o método “get()”, que retorna o valor de uma propriedade). Passamos para a função o objeto com o qual queremos trabalhar e a propriedade que queremos. <br>
+        Ele possui funções que já conhecemos, como “get()”, “set()”, “has()”, “deleteProperty()”, etc. <br>
+        Mas se já podemos fazer todas essas operações a partir do objeto “Object”, por que usar o “Reflect”? <br>
+        O Reflect não é apenas para objetos. Ele também serve para funções. Pode ficar um pouco estranho chamar “Object.apply()” para uma função, pois estamos chamando um método de “Object”. <br>
+        Com o “Reflect.apply()”, estamos usando um objeto neutro para fazer as operações, sejam elas de funções ou objetos. <br>
+        Então neste primeiro ponto, o Reflect seria apenas para deixar o seu código mais padronizado e limpo, mas não há problemas em continuar escrevendo como antes. <br>
+        Também temos no JavaScript operadores como o “delete”, que remove a propriedade de um objeto. O “Reflect” possui o método “deleteProperty()” que faz o mesmo. É bem melhor que a linguagem evolua com métodos de um objeto do que ficar criando operadores, pois assim diminui a necessidade de criar novas palavras reservadas, ou seja, palavras que você não pode usar, pois são comandos da linguagem. <br>
+
+    </p>
+
+
+    <script src="sc3366_reflect.js"></script>
+</body>
+</html>

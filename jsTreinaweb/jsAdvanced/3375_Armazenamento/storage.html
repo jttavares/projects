@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Armazenamento</title>
+</head>
+<body>
+    <p>
+        Podemos fazer vários tipos de aplicações com HTML e JavaScript. Mas quando atualizamos a página ou fechamos o navegador, as variáveis são reiniciadas. <br>
+Chega um momento em que as aplicações precisam se lembrar dos valores, mesmo que o usuário feche a aplicação. <br>
+Podemos então criar uma conexão com um servidor e armazenar os dados em um Banco de Dados. Para isso o usuário irá precisar de um cadastro e Login, além de só poder usar a aplicação quando estiver com conexão com a Internet. <br>
+Em certos casos pode ser que um servidor e um cadastro não sejam necessários para a sua aplicação, e que você também queira que o usuário possa usar a aplicação mesmo quando estiver sem Internet. <br>
+Para isso temos maneiras de armazenar dados no navegador.
+    </p>
+    <h3>Salvando Objetos</h3>
+    <p>
+        var myObj={ <br>
+            name:'Treinaweb', <br>
+            curso: 'JavaScript - Avançado', <br>
+            secao: 'LocalStorage' <br>
+        } <br>
+        localStorage.setItem('salvandoObjeto',JSON.stringify(myObj))
+    </p>
+    <h3>Recuperando Objetos</h3>
+    <p>
+        var myObj={ <br>
+            name:'Treinaweb', <br>
+            curso: 'JavaScript - Avançado', <br>
+            secao: 'LocalStorage' <br>
+        } <br>
+        localStorage.setItem('salvandoObjeto',JSON.stringify(myObj)) <br>
+        
+        <br>
+        <h4>var myObjL= JSON.parse(localStorage.getItem('salvandoObjeto'))</h4> <br>
+        <h5>{name: "Treinaweb", curso: "JavaScript - Avançado", secao: "LocalStorage"}</h5>
+        
+        
+    </p>
+    <br>
+    <h3>Removendo Itens</h3>
+    <p>
+        localStorage.removeItem('salvandoObjeto');
+    </p>
+
+    <script src="sc3375_storage.js"></script>
+</body>
+</html>

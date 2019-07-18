@@ -1,0 +1,62 @@
+
+    const languageSelect = document.querySelector('#language-tags');
+    const listElement = document.getElementById('list');
+    const templateWorker= new Worker('./sc3385d_renderWork.js');
+
+    const config= new Proxy({
+        listItems: JSON.parse( sessionStorage.getItem('listItems')) || [],
+        languageTag:localStorage.getItem('lang')|| 'en-US'
+    }, {
+        set:function(target, prop, value, receiver){
+            if(prop==='listItems' || prop=='languageTag'){
+                Reflect.set(...arguments);
+                render();
+                return true;
+            }
+            return false;
+        }
+    })
+
+    //let listItems = [];
+
+    //let languageTag = 'en-US';
+    languageSelect.value=config.languageTag;
+    languageSelect.addEventListener("change", changeLanguage);
+
+    function changeLanguage() {
+        const lang=languageSelect.value;
+        localStorage.setItem('lang',lang);
+        //alterar de languageTag para o abaixo
+       config.languageTag = languageSelect.value;
+        //como o proxy ja chama o render, não precisa mais chamá-lo aqui.
+       //render();
+    }
+
+    export function setList(list) {
+        sessionStorage.setItem('listItems', JSON.stringify(list));
+       config.listItems = list;
+       //como o proxy ja chama o render, não precisa mais chamá-lo aqui.
+        //render();
+    }
+
+    function render() {
+        //ao trabalhar co  proxy, é necessário converter os valores 
+        //para que ele possa trabalhar corretamente com os mesmos
+        const configParam=JSON.parse (JSON.stringify(config));
+        templateWorker.postMessage(configParam);
+    
+        //templateWorker.postMessage(config);
+
+        templateWorker.onmessage=function({data}){
+            listElement.innerHTML=data;
+        }
+       // listElement.innerHTML = html;
+    }
+    /*depois de exportar o return setList não é mais necessário
+    return {
+        setList
+    }*/
+
+    (function start(){
+        render();
+    })()
