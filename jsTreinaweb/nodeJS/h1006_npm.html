@@ -13,7 +13,69 @@
     </p>
     <textarea name="" id="" cols="75" rows="2">
         npm install promise
-
     </textarea>
+    <p>Requisitando o pacote em nosso projeto:</p>
+    <textarea name="" id="" cols="75" rows="1">
+        var promise=require('promise');
+    </textarea>
+    <p>Quando colocamos como no caso anterior require './...' o node vai procurar no diretório o nosso arquivo.
+
+    </p>
+    <p>Agora como neste caso do promise colocamos ('...') o node vai procurar o pacote em Node_modules</p>
+    <p>O  package.json vai listar todos os modulos usados no projeto para que outros desenvolvedores possam instalar corretamente.</p>
+    <p>Para iniciar um package.json basta digitar:</p>
+    <textarea name="" id="" cols="75" rows="1">
+        npm init
+    </textarea>
+    <p>Para gravar as dependencias do projeto coloque --save ou --save-dev.</p>
+    <textarea name="" id="" cols="75" rows="1">
+        npm install jasmine --save-dev
+    </textarea>
+    <p>Modo condensado de escerver a linha acima:</p>
+    <textarea name="" id="" cols="90" rows="5">
+        npm -i jasmine -s
+        ou
+        npm -i jasmine -D (--save-dev)
+        ou 
+        npm -i jasmine -g (installa pasta no pc como repositorio global para os pacotes)
+    </textarea>
+    <p>no package.json o circunflexo representa que aceitamos versão igual ou maior a que stá descrita.</p>
+    <textarea name="" id="" cols="90" rows="4">
+        "devDependencies": {
+            "jasmine": "^3.4.0"
+          }
+    </textarea>
+    <p>O modo mais seguro é deixarmos com o til '~' que restringe updatees a correção de bugs sem perda de funcionalidades.</p>
+    <textarea name="" id="" cols="90" rows="4">
+        "devDependencies": {
+            "jasmine": "~3.4.0"
+          }
+    </textarea>
+    <h4>Propriedade scripts.</h4>
+    <p>contem scripts para automação e testes.</p>
+    <textarea name="" id="" cols="90" rows="4">
+        "scripts": {
+            "test": "echo \"Error: no test specified\" && exit 1"
+          },
+    </textarea>
+    <p>podemos fazer rodar este teste digitando:</p>
+    <textarea name="" id="" cols="90" rows="2">
+        npm run test
+    </textarea>
+    <p>Outras automações possíveis:</p>
+    <ul>
+        <li>criar um arquivo: create_file</li>
+        <li>fazer ping em determinado site;</li>
+        <li>guardar resultados do ping no arquivo criado anteriormente.</li>
+    </ul>
+    <textarea name="" id="" cols="75" rows="8">
+        "scripts": {
+            "test": "echo \"Error: no test specified\" && exit 1",
+            "create_file": "touch log.txt",
+            "ping_log": "ping www.google.com > log.txt"
+          },
+    </textarea>
+
+    <script src="sc1006_npm.js"></script>
 </body>
 </html>

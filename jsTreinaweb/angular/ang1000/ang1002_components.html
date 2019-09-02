@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../style.css">
+    <title>Componentes</title>
+</head>
+<body>
+    <h1>Componentes</h1>
+    <p>O angular trabalha com o cnceito de componentes, que são trechos de código que controlam a interface, incluindo controles como buttons, inputs, etc.</p>
+    <p>componentes precisam ser genéricos para que possam ser reutilizados.</p>
+    <h3>Criando um componente manualmente</h3>
+    <p>Na pasta app criar um novo componente: <b>meu-componente.componente.ts</b></p>
+    <textarea name="" id="" cols="30" rows="10">import { Component } from '@angular/core';
+            @Component({
+                selector:'meu-componente-componente',
+                template:'<div>Meu Componente</div>'
+            })
+            export class MeuComponenteComponente{
+            
+            }</textarea>
+    <p>Depois registrar o componente no <b>app.module.ts</b></p>
+    <textarea name="" id="" cols="30" rows="19">import { MeuComponenteComponente } from './meu-componente.componente';
+            import { BrowserModule } from '@angular/platform-browser';
+            import { NgModule } from '@angular/core';
+            
+            import { AppComponent } from './app.component';
+            
+            
+            @NgModule({
+              declarations: [
+                AppComponent,
+                MeuComponenteComponente
+              ],
+              imports: [
+                BrowserModule
+              ],
+              providers: [],
+              bootstrap: [AppComponent]
+            })
+            export class AppModule { }
+            </textarea>
+        <p>Então incluir o componente no nosso HTML</p>
+        <textarea name="" id="" cols="30" rows="2"><h1>{{title}}</h1>
+        <meu-componente-componente></meu-componente-componente></textarea>
+</body>
+</html>

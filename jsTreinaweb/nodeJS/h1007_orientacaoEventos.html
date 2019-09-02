@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Orientação a eventos</title>
+</head>
+<body>
+    <h1>eventos</h1>
+    <ul>Alguns Eventos que podemos usar no node:
+        <li>Usuário conectou no servidor;</li>
+        <li>Arquivo terminou de ser feita.</li>
+        <li>Conexão com banco de dados.</li>
+    </ul>
+<h3>Como criar eventos.</h3>
+<textarea name="" readonly id="" cols="90" rows="17">
+    //Usamos o modulo 'events' que já vem com o node
+var EventEmitter=require('events');
+
+//A seguir vamos instanciar um novo emissor
+var emitter=new EventEmitter();
+
+//para deixar emissor aguardando algo acontacer, usamos a propriedade 'on'
+//passamos o nome do evento que ele deve aguardar, no caso abaixo 'meu_evento'
+//depois colocamos a função de callback que ele deve executar quando ouvir o evento
+emitter.on('meu_evento', function(numero){
+    console.log('meu evento', numero);
+});
+
+//Quando queremos que o evento seja executado enviamos um emit com o nome do evento que queremos
+emitter.emit('meu_evento',123);
+</textarea>
+<h3>Usando eventos para extender objeto</h3>
+<textarea name="" readonly id="" cols="90" rows="18">
+    var EventEmitter=require('events');
+
+
+    class Cao extends EventEmitter{
+        latir(){
+            console.log('Au, au');
+        }
+    }
+    
+    var Rex=new Cao();
+    Rex.on('pessoa_no_portao', Rex.latir);
+    
+    Rex.emit('pessoa_no_portao');
+    Rex.emit('pessoa_no_portao');
+    Rex.removeAllListeners();
+    Rex.emit('pessoa_no_portao');
+</textarea>
+
+    <script src="sc1007_eventos.js"></script>
+</body>
+</html>

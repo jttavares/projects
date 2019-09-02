@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Manipulando Arquivos</title>
+</head>
+<body>
+    <h1>Manipulando Arquivos</h1>
+    <p>para manipular arquivos (Escrita/Leitura) usamos o modulo 'fs' que já ven instalado no node.</p>
+    <textarea name="" readonly id="" cols="90" rows="1">
+            var fs=require('fs');
+    </textarea>
+    <p>Para Criar e Escrever o arquivo: </p>
+    <textarea name="" readonly id="" cols="90" rows="12">
+            //Parametros:
+            //1-nome do arquivo - 'my_file.txt'
+            //2-conteudo a ser escrito - "Treina Web"
+            //3-retorno de erro se houver - function (err)
+            fs.writeFile('my_file.txt','Treina Web', function(err){
+                if(err){
+                    console.error(err);
+                }
+                console.log('Arquivo criado');
+            });
+    </textarea>
+    <p>Para adicionar texto no arquivo podemos usar a propriedade .appendFile</p>
+    <textarea name="" readonly id="" cols="90" rows="6">
+            fs.appendFile('my_file.txt','Linhas adicionais para este arquivo', function(err){
+                if(err){
+                    console.error(err);
+                }
+                console.log('Arquivo editado');
+            });
+    </textarea>
+    <p>Para ler o arquivo:</p>
+    <textarea name="" readonly id="" cols="90" rows="10">
+            var fs =require('fs');
+
+            fs.readFile('my_file.txt', function(err, data){
+                if(err){
+                    console.error(err);
+                }
+                console.log(data.toString());
+            })
+    </textarea>
+
+    <script src="sc1008_files.js"></script>
+</body>
+</html>

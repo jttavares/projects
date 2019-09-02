@@ -1,0 +1,25 @@
+mkdir outro-repo
+
+cd outro-repo/
+
+git init
+
+vim README.md
+
+git add .
+
+git status
+
+git commit -m "outro repositorio"
+
+ls
+
+//criar referencia ao repositorio que esta na nuvem
+git remote add origin git@github.com:jttavares/Cursos.git
+
+origin= link com o repositorio que está na nuvem
+para ver os arquivos que estão lá: "git remote -v"
+
+//push
+git push -u origin master
+

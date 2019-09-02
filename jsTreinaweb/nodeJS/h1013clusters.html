@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Clusters</title>
+</head>
+<body>
+    <h1>Clusters</h1>
+    <p>Clusters facilita a escalabilidade.</p>
+    <p>Divide a thread em processos menores para poder atender mais clientes.</p>
+    <textarea name="" readonly id="" cols="90" rows="28">
+    
+//1 - variaveis
+var cluster=require('cluster'),
+    http=require('http'),
+    numCPUs=require('os').cpus().length;
+
+//2
+    if(cluster.isMaster){
+        for(var i=0;i<numCPUs;i++){
+            cluster.fork();
+
+        }
+        cluster.on('online', (worker)=>{
+            console.log(`worker ${worker.process.pid} is online.`);
+        })
+        cluster.on('listening', (address)=>{
+            console.log(`worker is listening`);
+        })
+        cluster.on('exit', (worker, code, signal)=>{
+            console.log(`worker ${worker.process.pid} died`);
+        })
+    }else{
+        http.createServer((req, res)=>{
+            res.writeHead(200);
+            res.end(`process ${process.pid} says hello`);
+        }).listen(8000);
+    }
+    </textarea>
+
+    <script src="sc1013_clusters.js"></script>
+</body>
+</html>

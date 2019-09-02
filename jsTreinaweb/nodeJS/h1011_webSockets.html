@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Web Sockets</title>
+</head>
+<body>
+    <h1>Web Sockets</h1>
+    <p>Web sockets permite fazer uma comunicação bi-direcional entre cliente e servidor. <br>
+        Como assim? <br>
+        Numa padrão, o cliente faz uma requisição, o servidor dá a resposta e fecha a conexão. 
+    </p>
+    <h3>Web Sockets</h3>
+    <p>Com o web sockets o servidor pode enviar informações que não foram solicitadas pelo cliente o que aumenta o trafego de informação e enriquece a experiencia. <br>
+    Alguns cenários que usam webSockets:
+    <ul>
+        <li>chat</li>
+        <li>feeds de redes sociais</li>
+        <li>jogos multiplayers</li>
+    </ul>
+    Para usar web sockets é necessário instalar o socket.io
+    </p>
+    <textarea name="" readonly id="" cols="90" rows="1">
+            npm install socket.io
+    </textarea>
+
+    <h4>Lado servidor</h4>
+    <textarea name="" readonly id="" cols="90" rows="13">
+            //1
+            //requisitar o modulo e passar a porta que queremos trabalhar, por exemplo 3000
+            var io=require('socket.io')(3000);
+        //2
+            //Criar listener connection
+            io.on('connection',(socket)=>{
+                console.log('novo usuario conectado');
+            })
+        
+        //3
+            //Criar a parte do cliente com  arquivo 'h1011b_webSocketClient.html'
+            //la colocar a biblioteca do socket.io num script para poder habilitar
+    </textarea>
+    <h4>Lado cliente "h1011b_webSocketClient.html"</h4>
+<textarea name="" readonly id="" cols="90" rows="12">
+        <body>
+            
+        
+                <script src="https://cdn.scoket.io/socket.io-2.2.0.js"></script>
+                <script>
+                //3-
+                    //"Passar o endereço do servidor"
+                    /*Este socket é igual ao parametro de io.on('connection',(socket)=>{
+                            console.log('novo usuario conectado');
+                        })*/
+                    var socket=io('http://localhost:3000');
+                </script>
+                
+    </body>
+</textarea>
+<h3>Servidor completo</h3>
+<textarea name="" readonly id="" cols="90" rows="22">
+        //1
+        //requisitar o modulo e passar a porta que queremos trabalhar, por exemplo 3000
+        var io=require('socket.io')(3000);
+    //2
+        //Criar listener connection
+        io.on('connection',(socket)=>{
+            console.log('novo usuario conectado');
+    //4
+        //tratar a mensagem recebida do cliente
+            socket.on('client_hello',(data)=>{
+                //formas de responder:
+                    //1-socket.emit: vc responde apenas para o cliente que te mandou a mensagem
+                    //2-socket.broadcasting.emit: vc responde a todos, menos vc;
+                    //3- io.socket.emit: vc responde a todos, inclusive vc
+                io.sockets.emit('server_hello', data);
+            })
+        });
+    
+    //3
+        //Criar a parte do cliente com  arquivo 'h1011b_webSocketClient.html'
+        //la colocar a biblioteca do socket.io num script para poder habilitar
+</textarea>
+<h3>Lado cliente - Finalizado</h3>
+<textarea name="" readonly id="" cols="90" rows="28">
+        <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+        <script>
+        //3-
+            //"Passar o endereço do servidor"
+            /*Este socket é igual ao parametro de io.on('connection',(socket)=>{
+                    console.log('novo usuario conectado');
+                })*/
+            var socket=io('http://localhost:3000');
+                socket.on('server_hello', receiveMessage);
+            function sendMessage(){
+                if(event.keyCode===13 && !event.shiftKey){
+                    var name = document.getElementById('name').value;
+                    var text= document.getElementById('message').value;
+    
+                    document.getElementById('message').value="";
+    
+                    socket.emit('client_hello', {name, text});
+                }
+            }
+            function receiveMessage(data){
+                var element=document.getElementById('messages');
+                element.innerHTML+=`
+                <div>
+                  <b>${data.name}  says: </b> ${data.text}
+                </div>
+                `;
+            }
+        </script>
+</textarea>
+
+<script src="sc1011_webSockets.js"></script>
+</body>
+</html>

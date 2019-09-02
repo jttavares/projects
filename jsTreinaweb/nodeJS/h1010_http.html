@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Protocolo HTTP</title>
+</head>
+<body>
+    <h1>Protocolo HTTP</h1>
+    <p>Nessa Aula:</p>
+    <ol>
+        <li>Criar um servidor</li>
+        <li>Servir arquivos;</li>
+    </ol>
+    <h3>Criando um servidor</h3>
+    <p>Usamos o modulo 'http' nativo do node, segue exemplo.</p>
+    <textarea name="" readonly id="" cols="90" rows="22">
+    var http=require('http');
+    
+    //função createServer tem dois paramentros
+        //1- o tipo a requisição feita pelo cliente
+            //-que url requisitou
+        //2- a resposta que vamos enviar ao cliente
+            //-texto, conteúdo e cabecalho que queremos enviar
+    var server=http.createServer(function(req, resp){
+        //escrever o cabecalho do objeto de resposta
+            //primeiro parametro, status da resposta
+            //proximo é o tipo de conteúdo que vamos passar
+        resp.writeHead(200, {'Content-Type':'text/html'});
+        resp.write('<h1>Hello World!</h1>');
+        //fechar conexão
+        resp.end();
+    });
+    
+    //Agora deixar o servidor ouvindo pra ver se alguem está "batendo" em alguma porta chamando ele
+        //colocamos como parametro a porta que ele deve escutar, neste caso a 3.000
+    server.listen(3000);
+        </textarea>
+
+        <h3>Criando o Arquivo de resposta</h3>
+        <textarea name="" readonly id="" cols="90" rows=38">
+//1
+var http=require('http');
+
+//7
+//arquivo de resposta
+var fs=require('fs');
+
+//2
+//função createServer tem dois paramentros
+    //1- o tipo a requisição feita pelo cliente
+        //-que url requisitou
+    //2- a resposta que vamos enviar ao cliente
+        //-texto, conteúdo e cabecalho que queremos enviar
+var server=http.createServer(function(req, resp){
+
+//8
+    //escrever no arquivo de resposta
+    fs.readFile('h1010b_respostaHttp.html',function(err, data){
+        //escrever o cabecalho do objeto de resposta
+//3
+        //primeiro parametro, status da resposta
+        //proximo é o tipo de conteúdo que vamos passar
+    resp.writeHead(200, {'Content-Type':'text/html'});
+//4
+    //passar o conteúdo do nosso arquivo
+    resp.write(data);
+//5
+    //fechar conexão
+    resp.end();
+    })
+    
+});
+
+//6
+//Agora deixar o servidor ouvindo pra ver se alguem está "batendo" em alguma porta chamando ele
+    //colocamos como parametro a porta que ele deve escutar, neste caso a 3.000
+server.listen(3000);
+        </textarea>
+
+<h3>Tratando a requisição a partir da url</h3>
+<textarea name="" readonly id="" cols="90" rows="60">
+    //1
+var http=require('http');
+
+//7
+//arquivo de resposta
+var fs=require('fs');
+
+//9
+//Para saber que tipo de arquivo e url foi requisitado pelo cliente
+var url=require('url');
+
+//2
+//função createServer tem dois paramentros
+    //1- o tipo a requisição feita pelo cliente
+        //-que url requisitou
+    //2- a resposta que vamos enviar ao cliente
+        //-texto, conteúdo e cabecalho que queremos enviar
+var server=http.createServer(function(req, resp){
+//10
+    //pegar dados da url
+    var url_parts=url.parse(req.url);
+    //pegar caminho do arquivo
+    var path=url_parts.pathname;
+
+//8 - //11
+    //escrever no arquivo de resposta
+    //11- substituir o nome do arquivo por __dirname(com dois underlines seguidos) = variável do node que indica diretorio atual onde aplicação está
+        //concatenar com nome do arquivo '+path'
+    fs.readFile(__dirname + path,function(err, data){
+//12
+    //Se der algum erro na resposta
+    if(err){
+        resp.writeHead(404,{'Content-Type':'text/html'});
+        resp.write('Not Found');
+    } 
+//13
+    //Se não der erro, vamos retornar o conteúdo do arquivo
+    else{
+//3
+        //escrever o cabecalho do objeto de resposta
+        //primeiro parametro, status da resposta
+        //proximo é o tipo de conteúdo que vamos passar
+    resp.writeHead(200, {'Content-Type':'text/html'});
+//4
+    //passar o conteúdo do nosso arquivo
+    resp.write(data);
+    }
+
+//5
+    //fechar conexão
+    resp.end();
+    })
+    
+});
+
+//6
+//Agora deixar o servidor ouvindo pra ver se alguem está "batendo" em alguma porta chamando ele
+    //colocamos como parametro a porta que ele deve escutar, neste caso a 3.000
+server.listen(3000);
+</textarea>
+</body>
+</html>

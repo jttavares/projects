@@ -1,0 +1,16 @@
+body{
+    background-color: #ddd;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+ol li{
+    background-color: deeppink;
+    color: white;
+    padding: 5px;
+    margin: 10px;
+    list-style-position: inside;
+}
+ol li a{
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+}
